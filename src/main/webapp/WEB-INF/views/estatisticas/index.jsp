@@ -15,20 +15,16 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Hit</th>
+								<th>Cache</th>
 								<th>Miss</th>
 								<th>Conexões</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>Cache</td>
-								<!-- Hit -->
-								<td></td>
-								<!-- Miss -->
-								<td></td>
-								<! -- Conections -->
-								<td></td>
+								<td>${statistics.queryCacheHitCount}</td>
+								<td>${statistics.queryCacheMissCount}</td>
+								<td>${statistics.connectCount}</td>
 							</tr>
 						</tbody>
 					</table>

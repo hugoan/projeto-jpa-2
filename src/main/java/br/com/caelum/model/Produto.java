@@ -15,12 +15,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
+import javax.persistence.Version;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Produto {
 
 	@Id
@@ -30,6 +34,9 @@ public class Produto {
 	private String nome;
 	@NotEmpty
 	private String linkDaFoto;
+	
+	@Version
+	private Integer versao;
 
 	@NotEmpty
 	@Column(columnDefinition = "TEXT")
@@ -44,6 +51,7 @@ public class Produto {
 
 	@ManyToMany
 	@JoinTable(name = "CATEGORIA_PRODUTO")
+	@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 	private List<Categoria> categorias = new ArrayList<>();
 
 	public List<Categoria> getCategorias() {
@@ -109,5 +117,12 @@ public class Produto {
 	public Loja getLoja() {
 		return loja;
 	}
-	
+
+	public Integer getVersao() {
+		return versao;
+	}
+
+	public void setVersao(Integer versao) {
+		this.versao = versao;
+	}
 }
